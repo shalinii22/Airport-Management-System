@@ -7,13 +7,21 @@ const aircraftRoutes = require('./routes/aircraft');
 const runwayRoutes = require('./routes/runway');
 const userRoutes = require('./routes/user');
 require('dotenv').config();
+const path = require('path');
 const mongoose = require('mongoose');
+const router = express.Router();
 const app = express();
 
 app.use(express.json());
 
 app.use(helmet());
 app.use(compression());
+
+app.use(express.static('./view')); //This ensures local references to cs and js files work
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/view/index.html');
+});
 
 app.use('/', airportRoutes);
 app.use('/', airlineRoutes);
@@ -32,4 +40,5 @@ mongoose.connect(
         console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
     }
 );
- 
+
+
