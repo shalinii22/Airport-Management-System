@@ -2,8 +2,9 @@
   "name": "shalini_node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
+  "main": "server.js",
+"scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,6 +15,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shalinii22/Airport-Management-System/issues"
+  },
+  "engines": {
+    "node": "16.6.1"
   },
   "homepage": "https://github.com/shalinii22/Airport-Management-System#readme",
   "dependencies": {
