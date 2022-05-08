@@ -7,9 +7,7 @@ const aircraftRoutes = require('./routes/aircraft');
 const runwayRoutes = require('./routes/runway');
 const userRoutes = require('./routes/user');
 require('dotenv').config();
-const path = require('path');
 const mongoose = require('mongoose');
-const router = express.Router();
 const app = express();
 
 app.use(express.json());
@@ -35,6 +33,10 @@ const listener = app.listen(process.env.PORT || 8080, () => {
 
 mongoose.connect(
     process.env.MONGODB_URI,
+    // {
+    //     server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+    //     replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+    // },
     (err) => {
         if (err) return console.log("Error: ", err);
         console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
