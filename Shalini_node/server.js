@@ -9,7 +9,9 @@ const userRoutes = require('./routes/user');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const app = express();
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 
 app.use(helmet());
@@ -33,10 +35,6 @@ const listener = app.listen(process.env.PORT || 8080, () => {
 
 mongoose.connect(
     process.env.MONGODB_URI,
-    // {
-    //     server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
-    //     replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
-    // },
     (err) => {
         if (err) return console.log("Error: ", err);
         console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
